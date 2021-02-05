@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TodoRepositoryService } from '../todo-repository.service';
 import ToDoItem from '../definitions/todo-item';
+import * as luxon from 'luxon';
 
 @Component({
   selector: 'app-todo-creation',
@@ -9,17 +10,23 @@ import ToDoItem from '../definitions/todo-item';
 })
 export class TodoCreationComponent implements OnInit {
   
+
   public description: string = "";
-  private _toDoRepositoryService: TodoRepositoryService;
 
-  constructor(toDoRepositoryService: TodoRepositoryService) { this._toDoRepositoryService = toDoRepositoryService; }
+  @Input() 
+  public ToDoList: Array<ToDoItem> | undefined;
 
-  ngOnInit(): void {
-  }
+  constructor() { }
+
+  ngOnInit(): void { }
 
   public AddItem(): void { 
-    this._toDoRepositoryService.AddToDoItem(this.description);
-    this.description = "";
+    if (this.ToDoList) {
+      let timeAdded: luxon.DateTime = luxon.DateTime.local();
+      this.ToDoList.push({text: this.description, completed: false, addedAt: timeAdded.toMillis()});
+      console.log('Added: ${description}')
+      this.description = "";
+    }
   }
 
 }

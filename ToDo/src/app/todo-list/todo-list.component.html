@@ -1,5 +1,7 @@
 <ul>
-    <li *ngFor="let todo of ToDoList">
+    <li *ngFor="let todo of toDoItems" (click)="RemoveItem(todo.text)">
         <h2>{{todo.text}}</h2>
     </li>
 </ul>
+
+<app-todo-creation [ToDoList]="toDoItems"> </app-todo-creation>

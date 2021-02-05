@@ -15,9 +15,4 @@ export class TodoRepositoryService {
         {text: "bye", completed: false, addedAt: 0}, 
         {text: "middle", completed: false, addedAt: 0}];
   }
-
-  public AddToDoItem(decription: string): void {
-    let timeAdded: luxon.DateTime = luxon.DateTime.local();
-    this.toDoItems.push({text: decription, completed: false, addedAt: timeAdded.toMillis()});
-  }
 }
