@@ -1,7 +1,14 @@
-<ul>
-    <li *ngFor="let todo of toDoItems" (click)="RemoveItem(todo.text)">
-        <h2>{{todo.text}}</h2>
+<ul class="py-5">
+    <li *ngFor="let todo of toDoItems" 
+        class="my-2 bg-gray-400 hover:bg-gray-500 w-full rounded-md">
+
+        <input type="checkbox" [(ngModel)]="todo.completed" class="m-2  py-1"/>
+
+        <span class="mx-2  py-1 text-lg font-bold w-full h-full" (click)="RemoveItem(todo.text)" [ngClass]="{'line-through': todo.completed}">
+            {{todo.text}}
+        </span>
     </li>
 </ul>
+<button (click)="RemoveAll()" class="bg-red-600 text-bold rounded-lg py-2 px-4 my-3">Clear All</button>
 
 <app-todo-creation [ToDoList]="toDoItems"> </app-todo-creation>

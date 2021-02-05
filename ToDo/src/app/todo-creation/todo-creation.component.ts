@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TodoRepositoryService } from '../todo-repository.service';
 import ToDoItem from '../definitions/todo-item';
 import * as luxon from 'luxon';
 

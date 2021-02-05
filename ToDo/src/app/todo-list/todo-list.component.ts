@@ -17,9 +17,9 @@ export class TodoListComponent implements OnInit {
   constructor() { 
     //this.toDoItems = new Array<ToDoItem>();
     this.toDoItems = [
-      {text: "hello", completed: false, addedAt: 0}, 
-      {text: "bye", completed: false, addedAt: 0}, 
-      {text: "middle", completed: false, addedAt: 0}];
+      {text: "Cut Grass", completed: false, addedAt: 0}, 
+      {text: "Read Books", completed: false, addedAt: 0}, 
+      {text: "Eat hummus!!!", completed: false, addedAt: 0}];
   }
 
   public AddToDoItem(decription: string): void {
@@ -30,13 +30,12 @@ export class TodoListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public RemoveItem(description: string) {
-    for (let search = 0; search < this.toDoItems.length; search++) {
-      if (this.toDoItems[search].text === description) {
-        this.toDoItems.splice(search);
-        break;
-      }
-    }
+  public RemoveItem(description: string): void {
+    this.toDoItems = this.toDoItems.filter(c => c.text !== description);
+  }
+
+  public RemoveAll(): void {
+    this.toDoItems = new Array<ToDoItem>();
   }
 
 }
